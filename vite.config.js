@@ -1,4 +1,5 @@
-import { fileURLToPath, URL } from "node:url";
+// import { fileURLToPath, URL } from "node:url";
+import { fileURLToPath, URL } from "url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -7,16 +8,16 @@ import vue from "@vitejs/plugin-vue";
 export default defineConfig({
   appType: "mpa",
   plugins: [vue()],
-  base: "/",
+  // base: "/",
   resolve: {
     alias: {
-      // "@": fileURLToPath(new URL("./src", import.meta.url)),
-      components: "/src/components",
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      // components: "/src/components",
     },
   },
-  server: {
-    fs: {
-      allow: [".."],
-    },
-  },
+  // server: {
+  //   fs: {
+  //     allow: [".."],
+  //   },
+  // },
 });

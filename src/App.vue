@@ -1,35 +1,20 @@
-<template>
-  <sidebar-menu :menu="menu" />
-  <router-view />
-</template>
-<script>
-export default {
-  name: "App",
-  data() {
-    return {
-      menu: [
-        {
-          header: "Main Navigation",
-          hiddenOnCollapse: true,
-        },
-        {
-          href: "/",
-          title: "Dashboard",
-          icon: "fa fa-user",
-        },
-        {
-          href: "/charts",
-          title: "Charts",
-          icon: "fa fa-chart-area",
-          child: [
-            {
-              href: "/charts/sublink",
-              title: "Sub Link",
-            },
-          ],
-        },
-      ],
-    };
-  },
-};
+<script setup>
+// import { Nav, Alert } from '@/components';
+import { Alert } from "@/components";
+import { useAuthStore } from "@/stores";
+const authStore = useAuthStore();
 </script>
+
+<template>
+  <div class="app-container" :class="authStore.user && 'bg-light'">
+    <Nav />
+    <Alert />
+    <div class="container pt-4 pb-4">
+      <router-view />
+    </div>
+  </div>
+</template>
+
+<style>
+@import "@/assets/base.css";
+</style>
